@@ -31,7 +31,11 @@ pd.set_option('display.max_columns', None)
 #pd.set_option('display.max_rows', None)
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
 
-df_ = pd.read_excel('/Users/ecembayindir/Library/Containers/com.microsoft.Excel/Data/Downloads/crmAnalytics/datasets/online_retail_II.xlsx', sheet_name= 'Year 2009-2010')
+df_ = pd.read_csv('/kaggle/input/online-retail-ii-uci/online_retail_II.csv')
+df_["InvoiceDate"] = pd.to_datetime(df_["InvoiceDate"])
+start_date = "2009-01-01"
+end_date = "2009-12-31"
+df_ = df_[(df_["InvoiceDate"] >= start_date) & (df_["InvoiceDate"] <= end_date)]
 df = df_.copy() #a copy as a backup.
 df.head()
 df.shape
